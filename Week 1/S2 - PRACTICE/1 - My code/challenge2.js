@@ -1,9 +1,10 @@
 function challenge2(array) {
-    var reverseArray = [];
-    for (var i = 0; i < array.length; i++) {
-        reverseArray.unshift(array[i]);
+    for (var i = 0; i < array.length / 2; i++) {
+        var temp = array[i];
+        array[i] = array[array.length - 1 - i];
+        array[array.length - 1 - i] = temp;
     }
-    return reverseArray;
+    return array;
 }
 
 var array1 = [14, 15, 16, 20];

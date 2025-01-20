@@ -11,8 +11,7 @@ function challenge6(votes) {
         candidates.push(votes[i]);
     }
     // count the number of election
-    var electionResults = {};
-    var maxCount = 0;
+    var electionResults = [];
     var winner = [];
     for (var i = 0; i < candidates.length; i++) {
         var count = 0;
@@ -21,15 +20,16 @@ function challenge6(votes) {
                 count++;
             }
         }
-        if (count > maxCount) {
-            maxCount = count;
-            winner = [candidates[i]]; // add the winner to array 
-        } else if (count == maxCount) {
+        electionResults.push(count);
+    }
+    // find the max number of election and winner
+    var maxCount = Math.max(...electionResults)
+    for (var i = 0; i < electionResults.length; i++) {
+        if (electionResults[i] == maxCount && !electionResults.includes(candidates[i])) {
             winner.push(candidates[i]);
         }
-        electionResults[candidates[i]] = count;
     }
-    winner.sort();
+
     return (winner.length == 1) ? winner[0] + " is the winner" : winner.join(" and ") + " are both winners";
 }
 
